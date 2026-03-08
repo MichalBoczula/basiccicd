@@ -26,10 +26,16 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Login to ACR
+        # run: |
+        #   az acr login --name ${{ vars.ACR_NAME }}
+
         run: |
-          az acr login --name ${{ vars.ACR_NAME }}
+          az acr login --name acrdevacr
 
       - name: Build and Push
         run: |
-          docker build -t ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }} .
-          docker push ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }}
+          docker build -t acrdevacr.azurecr.io/weather-app:${{ github.sha }} .
+          docker push acrdevacr.azurecr.io/weather-app:${{ github.sha }}
+        # run: |
+        #   docker build -t ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }} .
+        #   docker push ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }}

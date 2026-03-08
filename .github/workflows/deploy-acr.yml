@@ -25,8 +25,14 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      # - name: Deploy to Web App
+      #   uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: ${{ vars.WEBAPP_NAME }}
+      #     images: ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }}
+
       - name: Deploy to Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ vars.WEBAPP_NAME }}
-          images: ${{ vars.ACR_NAME }}.azurecr.io/weather-app:${{ github.sha }}
+          images: acrdevacr.azurecr.io/weather-app:${{ github.sha }}

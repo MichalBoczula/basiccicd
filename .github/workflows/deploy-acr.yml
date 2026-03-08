@@ -34,5 +34,5 @@ jobs:
       - name: Deploy to Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ vars.WEBAPP_NAME }}
+          app-name: test
           images: acrdevacr.azurecr.io/weather-app:${{ github.sha }}
